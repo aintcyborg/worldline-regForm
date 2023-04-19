@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registrations</title>
+    <style>
+        body {
+            /* display: inline-block; */
+            margin: 0 auto;
+            width: 200vh;
+        }
+
+        h2 {
+            color: rgb(28, 158, 132);
+            text-align: center;
+        }
+
+        label {
+            display: inline-block;
+        }
+
+        .form-class {
+            margin-left: auto;
+            margin-right: auto;
+            width: 600px;
+            background-color: ghostwhite;
+        }
+
+        input {
+            margin-left: 10px;
+        }
+
+        .btn {
+            background-color: rgb(41, 148, 127);
+            /* float: right; */
+            border-radius: 10px;
+            padding: 10px;
+            color: rgb(244, 245, 245);
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Employee Registration form</h2>
+    <form class="form-class">
+        <label>Name:</label>
+        <input type="text" id="name" /><br><br>
+        <label>E-mail</label>
+        <input type="email" id="email" /><br><br>
+        <label>Phone number</label>
+        <input type="tel" id="pno" /><br><br>
+        <label>Gender(M/F)</label>
+        <input type="text" id="sex" /><br><br>
+        <label>Qualification</label>
+        <input type="text" id="qualification" /><br><br>
+        <label>Date of birth</label>
+        <input type="date" id="dob" /><br><br>
+        <label>Joining date</label>
+        <input type="date" id="joindate" /><br><br>
+        <input class="btn" type="submit" value="Submit">
+        <button class="btn" style="background-color:rgb(41, 148, 127);"><a href="registrations.html"
+                style="color:rgb(244, 245, 245);">Show registrations</a></button>
+    </form>
+</body>
+<script>
+    //meth post
+    const post = async (data) => {
+    const resp = await fetch("http://localhost:4000",{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    const newData = await resp.json();
+    console.log(newData);
+
+} 
+   //--------------------------------------------------------------------------------------------
+    const dom = document.querySelector('form')
+    dom.addEventListener("submit", (e) => {
+        e.preventDefault()
+        const name=document.getElementById('name').value
+        const email=document.getElementById('email').value
+        const pno=document.getElementById('pno').value
+        const sex=document.getElementById('sex').value
+        const qualification=document.getElementById('qualification').value
+        const dob=document.getElementById('dob').value
+        const joindate=document.getElementById('joindate').value
+    
+    const data={
+            name:name,
+            email:email,
+            pno:pno,
+            sex:sex,
+            qualification:qualification,
+            dob:dob,
+            joindate:joindate
+        }
+        //check input-console
+        console.log(data);
+        post(data)
+    })
+   
+</script>
+   
+</html>
+
+
+
+
+

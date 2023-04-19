@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registrations</title>
+    </head>
+    <body>
+        <table>
+        </table>
+        <h2 id="welcome"></h2>
+    </body>
+    <script>
+        async function get ()
+        {
+            const data=await fetch('http://localhost:4000')
+            const d=await data.json();
+            console.log(d) 
+         
+            
+            content=`
+        <tr>
+            <th>Name</th>
+            <th>Email Id</th>
+            <th>Phone no.</th>
+            <th>Gender</th>
+            <th>Qualification</th>
+            <th>Date of Birth</th>
+            <th>Join Date</th>
+        </tr>
+        `;
+        d.forEach(e => {
+
+            content+=`
+            <tr>
+            <td>${e.name}</td>
+            <td>${e.email}</td>
+            <td>${e.pno}</td>
+            <td>${e.sex}</td>
+            <td>${e.qualification}</td>
+            <td>${e.dob}</td>
+            <td>${e.joindate}</td>
+        </tr>
+            `
+        });
+        const t=document.querySelector('table')
+        t.innerHTML=content
+        document.getElementById("welcome").innerHTML=text
+    }
+    get();
+
+        
+        
+    </script>
+</html>
